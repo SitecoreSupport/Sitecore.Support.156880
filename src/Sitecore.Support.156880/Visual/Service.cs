@@ -351,9 +351,9 @@ namespace Sitecore.Support.Visual
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -378,9 +378,9 @@ namespace Sitecore.Support.Visual
                     result.AddElement("database", name);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -417,9 +417,9 @@ namespace Sitecore.Support.Visual
                     }
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -515,9 +515,9 @@ namespace Sitecore.Support.Visual
                     result.EndElement();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -544,9 +544,9 @@ namespace Sitecore.Support.Visual
                     result.AddElement("language", language.CultureInfo.DisplayName, "name", language.Name, "cultureinfo", language.CultureInfo.Name);
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -577,9 +577,9 @@ namespace Sitecore.Support.Visual
                     result.EndElement();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -607,9 +607,9 @@ namespace Sitecore.Support.Visual
                     result.EndElement();
                 }
             }
-            catch
+            catch(Exception ex)
             {
-                // silent
+                SetError(ex);
             }
 
             return result.XmlDocument;
@@ -910,12 +910,12 @@ namespace Sitecore.Support.Visual
                 logMessage.Append(String.IsNullOrEmpty(message) ? "NO MESSAGE" : message);
 
                 var exMessage = new StringBuilder(logMarker);
-                logMessage.Append("[exception]");
-                logMessage.Append(ex == null ? "NO EXCEPTION" : ex.Message);
+                exMessage.Append("[exception]");
+                exMessage.Append(ex == null ? "NO EXCEPTION" : ex.Message);
 
                 var exCallStack = new StringBuilder(logMarker);
-                logMessage.Append("[exception.callstack]");
-                logMessage.Append(ex == null ? "NO EXCEPTION" : ex.StackTrace.Replace("\r\n", "!#!"));
+                exCallStack.Append("[exception.callstack]");
+                exCallStack.Append(ex == null ? "NO EXCEPTION" : ex.StackTrace.Replace("\r\n", "!#!"));
 
                 switch (logNotificationLevel)
                 {
